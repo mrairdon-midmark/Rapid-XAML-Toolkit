@@ -5,9 +5,6 @@ using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using RapidXamlToolkit;
-using RapidXamlToolkit.Logging;
-using RapidXamlToolkit.Options;
 
 namespace RapidXaml.Cli.Parsers
 {
@@ -16,19 +13,16 @@ namespace RapidXaml.Cli.Parsers
     /// </summary>
     public class CliDocumentParser
     {
-        private readonly ILogger logger;
-        private readonly ProjectType projectType;
-        private readonly Profile? profile;
+        private readonly string projectType;
+        private readonly Services.ProfileConfig? profile;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CliDocumentParser"/> class.
         /// </summary>
-        /// <param name="logger">Logger instance.</param>
         /// <param name="projectType">Type of project.</param>
         /// <param name="profile">Profile configuration (optional).</param>
-        public CliDocumentParser(ILogger logger, ProjectType projectType, Profile? profile = null)
+        public CliDocumentParser(string projectType, Services.ProfileConfig? profile = null)
         {
-            this.logger = logger;
             this.projectType = projectType;
             this.profile = profile;
         }
@@ -52,8 +46,6 @@ namespace RapidXaml.Cli.Parsers
                     continue;
                 }
 
-                this.logger.RecordInfo($"Processing class: {classDecl.Identifier.Text}");
-
                 // Get all properties in the class
                 var properties = classDecl.DescendantNodes()
                     .OfType<PropertyDeclarationSyntax>()
@@ -66,8 +58,6 @@ namespace RapidXaml.Cli.Parsers
                 {
                     var propName = prop.Identifier.Text;
                     var propType = prop.Type.ToString();
-
-                    this.logger.RecordInfo($"  Property: {propName} ({propType})");
 
                     // Simple XAML generation based on property type
                     if (propType.Contains("string") || propType.Contains("String"))

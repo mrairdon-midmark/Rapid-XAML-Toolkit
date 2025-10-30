@@ -9,8 +9,6 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.VisualBasic;
 using RapidXaml.Cli.Parsers;
-using RapidXamlToolkit;
-using RapidXamlToolkit.Options;
 
 namespace RapidXaml.Cli.Services
 {
@@ -41,18 +39,12 @@ namespace RapidXaml.Cli.Services
             var code = await File.ReadAllTextAsync(inputPath);
             var extension = Path.GetExtension(inputPath).ToLowerInvariant();
 
-            // Parse project type
-            if (!Enum.TryParse<ProjectType>(projectType, true, out var projType))
-            {
-                projType = ProjectType.Uwp;
-            }
-
             // Load profile if specified
-            Profile? profile = null;
+            ProfileConfig? profile = null;
             if (!string.IsNullOrEmpty(profilePath) && File.Exists(profilePath))
             {
                 var profileJson = await File.ReadAllTextAsync(profilePath);
-                profile = Newtonsoft.Json.JsonConvert.DeserializeObject<Profile>(profileJson);
+                profile = Newtonsoft.Json.JsonConvert.DeserializeObject<ProfileConfig>(profileJson);
             }
 
             // Create parser based on file extension
@@ -80,11 +72,37 @@ namespace RapidXaml.Cli.Services
                 throw new NotSupportedException($"File extension '{extension}' is not supported.");
             }
 
-            var logger = new CliLogger();
-            var parser = new CliDocumentParser(logger, projType, profile);
+            var parser = new CliDocumentParser(projectType, profile);
             var output = parser.Parse(syntaxTree.GetRoot(), semanticModel, className);
 
             return output;
         }
+    }
+
+    /// <summary>
+    /// Profile configuration for XAML generation.
+    /// </summary>
+    public class ProfileConfig
+    {
+        /// <summary>Gets or sets the profile name.</summary>
+        public string? Name { get; set; }
+
+        /// <summary>Gets or sets the project type.</summary>
+        public string? ProjectType { get; set; }
+
+        /// <summary>Gets or sets the mappings.</summary>
+        public ProfileMapping[]? Mappings { get; set; }
+    }
+
+    /// <summary>
+    /// Profile mapping configuration.
+    /// </summary>
+    public class ProfileMapping
+    {
+        /// <summary>Gets or sets the type name.</summary>
+        public string? Type { get; set; }
+
+        /// <summary>Gets or sets the output template.</summary>
+        public string? Output { get; set; }
     }
 }
