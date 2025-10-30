@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidXaml.Cli", "RapidXaml.Cli\RapidXaml.Cli.csproj", "{05A8F44F-A32B-492B-9102-CD3E8FA899C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidXaml.Cli.Tests", "RapidXaml.Cli.Tests\RapidXaml.Cli.Tests.csproj", "{8C9FEB06-70E8-4C0B-BDDF-9DF1B88A1D43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,18 @@ Global
 		{05A8F44F-A32B-492B-9102-CD3E8FA899C5}.Release|x64.Build.0 = Release|Any CPU
 		{05A8F44F-A32B-492B-9102-CD3E8FA899C5}.Release|x86.ActiveCfg = Release|Any CPU
 		{05A8F44F-A32B-492B-9102-CD3E8FA899C5}.Release|x86.Build.0 = Release|Any CPU
+		{8C9FEB06-70E8-4C0B-BDDF-9DF1B88A1D43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C9FEB06-70E8-4C0B-BDDF-9DF1B88A1D43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C9FEB06-70E8-4C0B-BDDF-9DF1B88A1D43}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8C9FEB06-70E8-4C0B-BDDF-9DF1B88A1D43}.Debug|x64.Build.0 = Debug|Any CPU
+		{8C9FEB06-70E8-4C0B-BDDF-9DF1B88A1D43}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8C9FEB06-70E8-4C0B-BDDF-9DF1B88A1D43}.Debug|x86.Build.0 = Debug|Any CPU
+		{8C9FEB06-70E8-4C0B-BDDF-9DF1B88A1D43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C9FEB06-70E8-4C0B-BDDF-9DF1B88A1D43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C9FEB06-70E8-4C0B-BDDF-9DF1B88A1D43}.Release|x64.ActiveCfg = Release|Any CPU
+		{8C9FEB06-70E8-4C0B-BDDF-9DF1B88A1D43}.Release|x64.Build.0 = Release|Any CPU
+		{8C9FEB06-70E8-4C0B-BDDF-9DF1B88A1D43}.Release|x86.ActiveCfg = Release|Any CPU
+		{8C9FEB06-70E8-4C0B-BDDF-9DF1B88A1D43}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
