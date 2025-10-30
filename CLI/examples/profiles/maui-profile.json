@@ -1,0 +1,50 @@
+{
+  "name": "MAUI Profile Example",
+  "projectType": "Maui",
+  "viewGeneration": {
+    "xamlFileSuffix": "View",
+    "viewModelFileSuffix": "ViewModel",
+    "xamlPlaceholder": "<!-- Add controls here -->",
+    "codeFileSuffix": ".xaml.cs"
+  },
+  "mappings": [
+    {
+      "type": "string",
+      "ifReadOnly": false,
+      "output": "<Entry Text=\"{Binding $name$}\" Placeholder=\"Enter $name$\" />"
+    },
+    {
+      "type": "string",
+      "ifReadOnly": true,
+      "output": "<Label Text=\"{Binding $name$}\" />"
+    },
+    {
+      "type": "int",
+      "output": "<Entry Text=\"{Binding $name$}\" Keyboard=\"Numeric\" Placeholder=\"Enter $name$\" />"
+    },
+    {
+      "type": "double",
+      "output": "<Entry Text=\"{Binding $name$}\" Keyboard=\"Numeric\" Placeholder=\"Enter $name$\" />"
+    },
+    {
+      "type": "bool",
+      "output": "<CheckBox IsChecked=\"{Binding $name$}\" />\n<Label Text=\"$name$\" />"
+    },
+    {
+      "type": "DateTime",
+      "output": "<DatePicker Date=\"{Binding $name$}\" />"
+    },
+    {
+      "type": "ICommand",
+      "output": "<Button Text=\"$name$\" Command=\"{Binding $name$}\" />"
+    },
+    {
+      "type": "ObservableCollection<T>",
+      "output": "<CollectionView ItemsSource=\"{Binding $name$}\">\n    <CollectionView.ItemTemplate>\n        <DataTemplate>\n            <Label Text=\"{Binding .}\" />\n        </DataTemplate>\n    </CollectionView.ItemTemplate>\n</CollectionView>"
+    },
+    {
+      "type": "List<T>",
+      "output": "<CollectionView ItemsSource=\"{Binding $name$}\">\n    <CollectionView.ItemTemplate>\n        <DataTemplate>\n            <Label Text=\"{Binding .}\" />\n        </DataTemplate>\n    </CollectionView.ItemTemplate>\n</CollectionView>"
+    }
+  ]
+}

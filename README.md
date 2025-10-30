@@ -17,8 +17,30 @@ This is a collection of tools for making it easier for developers to work with X
 - **Enhance the editor** window.
 - **Roslyn Analyzers** (to help with code related to MVVM and XAML)
 - **Project & Item Templates** (to create new apps faster)
+- **Command-Line Interface** (for CI/CD integration)
 
 Get it from the [VS Marketplace](https://marketplace.visualstudio.com/items?itemName=MattLaceyLtd.RapidXamlToolkit)
+
+## 🚀 New: Command-Line Interface (CLI)
+
+Run XAML analysis and generation in your CI/CD pipelines!
+
+```bash
+# Install
+dotnet tool install --global RapidXaml.Cli
+
+# Analyze XAML files
+rxt analyze --project MyApp.csproj
+
+# Generate XAML from ViewModels
+rxt generate --input MainViewModel.cs --project-type Maui
+```
+
+✅ Works with **GitHub Actions** and **Azure DevOps**  
+✅ Multiple output formats (MSBuild, JSON, Console)  
+✅ Cross-platform (.NET 8)
+
+[📖 Read the CLI documentation](./CLI/README.md) | [🚀 Quick Start Guide](./CLI/QUICKSTART.md)
 
 ## XAML Analysis
 
@@ -27,6 +49,8 @@ Like [Roslyn Analyzers](https://docs.microsoft.com/en-us/visualstudio/code-quali
 ![Screenshot showing some of the issues analysis can find](./docs/Assets/xaml-analysis-example.png)
 
 You can also create your own [**Custom Analyzers**](./docs/custom-analysis.md) and run the analysis as part of a **Build/CI process** with this [NuGet package](https://www.nuget.org/packages/RapidXaml.BuildAnalysis/).
+
+**NEW:** Use the [**Command-Line Interface (CLI)**](./CLI/README.md) to integrate XAML analysis and generation into your CI/CD pipelines (GitHub Actions, Azure DevOps, etc.).
 
 Learn more about [features](./docs/features.md).
 
@@ -52,7 +76,19 @@ The generated XAML is based on common conventions but is highly [configurable](.
 
 ## Installation
 
+### Visual Studio Extension
+
 Please see the [**getting started guide**](./docs/getting-started.md).
+
+### Command-Line Tool
+
+For CI/CD integration, install the CLI tool as a .NET Global Tool:
+
+```bash
+dotnet tool install --global RapidXaml.Cli
+```
+
+See the [CLI documentation](./CLI/README.md) for usage details and examples.
 
 ## Contributing
 

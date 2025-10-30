@@ -1,0 +1,55 @@
+name: XAML Analysis
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  analyze-xaml:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+    
+    - name: Install Rapid XAML CLI
+      run: dotnet tool install --global RapidXaml.Cli
+    
+    - name: Analyze XAML files
+      run: |
+        rxt analyze --project ./src/MyApp/MyApp.csproj --format msbuild
+      continue-on-error: false
+    
+    - name: Upload results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: xaml-analysis-results
+        path: xaml-analysis-results.json
+
+  generate-xaml:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+    
+    - name: Install Rapid XAML CLI
+      run: dotnet tool install --global RapidXaml.Cli
+    
+    - name: Generate XAML from ViewModels
+      run: |
+        rxt generate \
+          --input ./src/MyApp/ViewModels/MainViewModel.cs \
+          --output ./src/MyApp/Views/MainView.xaml \
+          --project-type Maui
